@@ -1,10 +1,10 @@
 {
   "name": "pugbot",
   "version": "0.0.1",
-  "description": "A Discord bot for organizing pickup games.",
-  "main": "bot.js",
+  "description": "A Discord bot for organizing pickups and scrims.",
+  "main": "index.js",
   "scripts": {
-    "start": "babel-node bot.js",
+    "start": "babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "https://github.com/joshramsbottom/pugbot.git",
@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.0.0",
-    "ghastly": "^0.2.2"
+    "ghastly": "^0.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
