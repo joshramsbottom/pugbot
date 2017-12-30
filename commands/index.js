@@ -1,7 +1,9 @@
 'use strict';
 
-import { scrim } from './scrim';
+import { ping } from './ping';
+import { add } from './add';
 
 export const commands = [
-  scrim,
+  add,
+  ping,
 ];

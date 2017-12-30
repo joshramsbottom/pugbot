@@ -17,7 +17,8 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.0.0",
-    "ghastly": "^0.4.0"
+    "ghastly": "^0.4.0",
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
