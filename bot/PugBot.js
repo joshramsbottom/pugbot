@@ -1,6 +1,7 @@
 import { Client } from 'ghastly';
 import { PugQueue } from '../services';
 import { expectChannel } from '../middleware';
+import { idleHandler } from '../handlers';
 
 export class PugBot {
 
@@ -21,6 +22,10 @@ export class PugBot {
           // do nothing
       }
     });
+
+    this.client.on('presenceUpdate', (oldMember, newMember) => {
+      idleHandler(oldMember, newMember, this.client.services);
+    });
   }
 
   start() {
@@ -37,9 +42,9 @@ export class PugBot {
     this.client.services.singleton('pugs.queue', () => new PugQueue(this.config));
   }
 
-  whitelistChannels() {
+  whitelistChannel() {
     this.client.commands.applyGroupMiddleware('pugs', [
-      expectChannel(this.config.channelWhitelist),
+      expectChannel(this.config.pugChannel),
     ]);
   }
 }

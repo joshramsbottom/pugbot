@@ -6,5 +6,5 @@ let pugBot = new PugBot(config);
 
 pugBot.loadCommands(commands);
 pugBot.loadServices();
-pugBot.whitelistChannels();
+pugBot.whitelistChannel();
 pugBot.start();

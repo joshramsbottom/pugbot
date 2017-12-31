@@ -4,6 +4,7 @@ export class PugQueue {
     this.config = config;
     this.gameCounter = 0;
     this.queue = [];
+    this.idleTimers = new Map();
   }
 
   add(member) {
@@ -20,7 +21,7 @@ export class PugQueue {
     this.queue.push(member);
     member.addRole(this.config.pugRole);
 
-    return `${name} added to queue. ${this.queue.length}/12`;
+    return `${name} added to queue. ${this.queue.length}/${this.config.teamSize * 2}`;
   }
 
   attemptGameStart(guild) {
@@ -45,5 +46,23 @@ export class PugQueue {
     this.queue.length = 0;
 
     return `Game ready to start, draft teams in channel ${tempChannelName}.`;
+  }
+
+  startIdleTimer(member) {
+    this.idleTimers.set(member.id, setTimeout(() => {
+      this.remove(member);
+    }, this.config.idleTime));
+  }
+
+  remove(member) {
+    member.removeRole(this.config.pugRole);
+
+    const memberPos = this.queue.indexOf(member);
+    if (memberPos >= 0) {
+      this.queue.splice(memberPos, 1);
+    }
+
+    const channel = member.guild.channels.get(this.config.pugChannel);
+    channel.send(`${member.user.username}#${member.user.discriminator} removed from pugs due to idling.`);
   }
 }

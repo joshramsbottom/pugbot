@@ -1,13 +1,9 @@
 import { isString } from 'lodash/lang';
 
-export function expectChannel(identifiers) {
-  identifiers.forEach((id) => {
-    if (!isString(id)) {
-      throw new TypeError('Expected channel identifiers to be strings.');
-    }
-  });
-
-  const whitelist = new Set(identifiers);
+export function expectChannel(identifier) {
+  if (!isString(identifier)) {
+    throw new TypeError('Expected channel identifier to be string.');
+  }
 
   return async (next, context) => {
     const {
@@ -16,7 +12,7 @@ export function expectChannel(identifiers) {
       },
     } = context;
 
-    if (whitelist.has(channel.id)) {
+    if (identifier === channel.id) {
       return next(context);
     }
 
