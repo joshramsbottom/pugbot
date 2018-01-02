@@ -38,9 +38,3 @@ jspm_packages
 
 # Config
 config.js
-
-# ternjs
-.tern-project
-
-# VS Code
-.vscode

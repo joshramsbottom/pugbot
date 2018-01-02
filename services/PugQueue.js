@@ -7,8 +7,12 @@ export class PugQueue {
     this.idleTimers = new Map();
   }
 
+  getFullName(member) {
+    return member.user.username + '#' + member.user.discriminator;
+  }
+
   add(member) {
-    const name = member.user.username + '#' + member.user.discriminator;
+    const name = this.getFullName(member);
 
     if (this.queue.includes(member)) {
       return `${name} is already queued.`;
@@ -50,19 +54,23 @@ export class PugQueue {
 
   startIdleTimer(member) {
     this.idleTimers.set(member.id, setTimeout(() => {
-      this.remove(member);
+      this.removeHelper(member);
+      const channel = member.guild.channels.get(this.config.pugChannel);
+      channel.send(`${this.getFullName(member)} removed from pugs due to idling.`);
     }, this.config.idleTime));
   }
 
-  remove(member) {
+  removeHelper(member) {
     member.removeRole(this.config.pugRole);
 
     const memberPos = this.queue.indexOf(member);
     if (memberPos >= 0) {
       this.queue.splice(memberPos, 1);
     }
+  }
 
-    const channel = member.guild.channels.get(this.config.pugChannel);
-    channel.send(`${member.user.username}#${member.user.discriminator} removed from pugs due to idling.`);
+  remove(member) {
+    this.removeHelper(member);
+    return `${this.getFullName(member)} removed from queue. ${this.queue.length}/${this.config.teamSize * 2}`;
   }
 }
