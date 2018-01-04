@@ -21,5 +21,6 @@ export function game() {
     handler,
     triggers: ['game'],
     group: 'pugs',
+    description: 'Get current pug queue status.',
   };
 };

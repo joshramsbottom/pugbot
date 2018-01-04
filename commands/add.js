@@ -10,7 +10,8 @@ export function add() {
 
   return {
     handler,
-    triggers: ['add'],
+    triggers: ['add', 'pugs'],
     group: 'pugs',
+    description: 'Add yourself to the pug queue for the next game.',
   };
 };
