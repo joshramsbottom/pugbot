@@ -11,6 +11,10 @@ export class PugQueue {
     return member.user.username + '#' + member.user.discriminator;
   }
 
+  getQueueState() {
+    return `${this.queue.length}/${this.config.teamSize * 2}`;
+  }
+
   add(member) {
     const name = this.getFullName(member);
 
@@ -25,7 +29,7 @@ export class PugQueue {
     this.queue.push(member);
     member.addRole(this.config.pugRole);
 
-    return `${name} added to queue. ${this.queue.length}/${this.config.teamSize * 2}`;
+    return `${name} added to queue. ${this.getQueueState()}`;
   }
 
   attemptGameStart(guild) {
@@ -56,8 +60,15 @@ export class PugQueue {
     this.idleTimers.set(member.id, setTimeout(() => {
       this.removeHelper(member);
       const channel = member.guild.channels.get(this.config.pugChannel);
-      channel.send(`${this.getFullName(member)} removed from pugs due to idling.`);
+      channel.send(`${this.getFullName(member)} removed from queue due to idling. ${this.getQueueState()}`);
     }, this.config.idleTime));
+  }
+
+  stopIdleTimer(member) {
+    const timeout = this.idleTimers.get(member.id);
+    if (timeout !== undefined) {
+      clearTimeout(timeout);
+    }
   }
 
   removeHelper(member) {
@@ -71,6 +82,12 @@ export class PugQueue {
 
   remove(member) {
     this.removeHelper(member);
-    return `${this.getFullName(member)} removed from queue. ${this.queue.length}/${this.config.teamSize * 2}`;
+    return `${this.getFullName(member)} removed from queue. ${this.getQueueState()}`;
+  }
+
+  removeOffline(member) {
+    this.removeHelper(member);
+    const channel = member.guild.channels.get(this.config.pugChannel);
+    channel.send(`${this.getFullName(member)} removed from queue due to going offline. ${this.getQueueState()}`);
   }
 }

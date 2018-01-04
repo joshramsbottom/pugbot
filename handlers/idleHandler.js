@@ -3,11 +3,15 @@ export function idleHandler(oldMember, newMember, services) {
     return;
   }
 
-  if (newMember.presence.status === 'idle') {
-    const queueService = services.get('pugs.queue');
+  const queueService = services.get('pugs.queue');
 
-    if (queueService.queue.includes(newMember)) {
+  if (queueService.queue.includes(newMember)) {
+    if (newMember.presence.status === 'idle') {
       queueService.startIdleTimer(newMember);
+    } else if (newMember.presence.status === 'offline') {
+      queueService.removeOffline(newMember);
+    } else if (newMember.presence.status === 'online') {
+      queueService.stopIdleTimer(newMember);
     }
   }
 };

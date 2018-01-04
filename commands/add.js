@@ -13,5 +13,4 @@ export function add() {
     triggers: ['add'],
     group: 'pugs',
   };
-
 };
