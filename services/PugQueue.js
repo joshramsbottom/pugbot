@@ -29,7 +29,7 @@ export class PugQueue {
     this.queue.push(member);
     member.addRole(this.config.pugRole);
 
-    return `${name} added to queue. ${this.getQueueState()}`;
+    return `${String.fromCodePoint(0x2705)} ${name} added to queue. ${this.getQueueState()}`;
   }
 
   attemptGameStart(guild) {
@@ -60,7 +60,7 @@ export class PugQueue {
     this.idleTimers.set(member.id, setTimeout(() => {
       this.removeHelper(member);
       const channel = member.guild.channels.get(this.config.pugChannel);
-      channel.send(`${this.getFullName(member)} removed from queue due to idling. ${this.getQueueState()}`);
+      channel.send(`${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue due to idling. ${this.getQueueState()}`);
     }, this.config.idleTime));
   }
 
@@ -82,12 +82,12 @@ export class PugQueue {
 
   remove(member) {
     this.removeHelper(member);
-    return `${this.getFullName(member)} removed from queue. ${this.getQueueState()}`;
+    return `${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue. ${this.getQueueState()}`;
   }
 
   removeOffline(member) {
     this.removeHelper(member);
     const channel = member.guild.channels.get(this.config.pugChannel);
-    channel.send(`${this.getFullName(member)} removed from queue due to going offline. ${this.getQueueState()}`);
+    channel.send(`${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue due to going offline. ${this.getQueueState()}`);
   }
 }

@@ -1,6 +1,6 @@
 import { Client } from 'ghastly';
 import { PugQueue } from '../services';
-import { expectChannel } from '../middleware';
+import { expectChannel, deleteCommandMsg } from '../middleware';
 import { idleHandler } from '../handlers';
 
 export class PugBot {
@@ -42,9 +42,10 @@ export class PugBot {
     this.client.services.singleton('pugs.queue', () => new PugQueue(this.config));
   }
 
-  whitelistChannel() {
+  applyPugsMiddleware() {
     this.client.commands.applyGroupMiddleware('pugs', [
       expectChannel(this.config.pugChannel),
+      deleteCommandMsg(),
     ]);
   }
 }

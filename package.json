@@ -1,7 +1,7 @@
 {
   "name": "pugbot",
   "version": "0.0.1",
-  "description": "A Discord bot for organizing pickups and scrims.",
+  "description": "A Discord bot for organizing pickups.",
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",

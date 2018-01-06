@@ -9,6 +9,7 @@ export function help() {
         .setColor(Constants.Colors.BLUE);
 
     let text = ``;
+    text += printCommand(commands.get('help'));
     text += printCommand(commands.get('game'));
     text += printCommand(commands.get('add'));
     text += printCommand(commands.get('rem'));
@@ -28,7 +29,11 @@ export function help() {
   }
 
   function printCommand(command) {
-    return `!${command.name} - ${command.description}\n`;
+    let text = `!${command.name}`;
+    command.aliases.forEach(alias => {
+      text += `, !${alias}`;
+    });
+    return `${text} - ${command.description}\n`;
   }
 
   return {
