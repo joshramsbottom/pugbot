@@ -19,6 +19,8 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
     "ghastly": "^0.4.0",
     "lodash": "^4.17.4"
   },
