@@ -1,9 +1,9 @@
 import { isString } from 'lodash/lang';
 
 export function expectChannel(identifier) {
-  if (!isString(identifier)) {
-    throw new TypeError('Expected channel identifier to be string.');
-  }
+  // if (!isString(identifier)) {
+  //   throw new TypeError('Expected channel identifier to be string.');
+  // }
 
   return async (next, context) => {
     const {

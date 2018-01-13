@@ -5,9 +5,8 @@ import { idleHandler } from '../handlers';
 
 export class PugBot {
 
-  constructor(config) {
+  constructor() {
     this.client = new Client({ prefix: '!' });
-    this.config = config;
 
     this.client.on('ready', () => {
       console.log("Bot running...");
@@ -39,7 +38,7 @@ export class PugBot {
   }
 
   loadServices() {
-    this.client.services.singleton('pugs.queue', () => new PugQueue(this.config));
+    this.client.services.singleton('pugs.queue', () => new PugQueue());
   }
 
   applyPugsMiddleware() {

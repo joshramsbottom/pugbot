@@ -1,7 +1,6 @@
 export class PugQueue {
 
-  constructor(config) {
-    this.config = config;
+  constructor() {
     this.gameCounter = 0;
     this.queue = [];
     this.idleTimers = new Map();
