@@ -29,7 +29,7 @@ export class PugBot {
   }
 
   start() {
-    this.client.login(this.config.token);
+    this.client.login(process.env.TOKEN);
   }
 
   loadCommands(commands) {
@@ -44,7 +44,7 @@ export class PugBot {
 
   applyPugsMiddleware() {
     this.client.commands.applyGroupMiddleware('pugs', [
-      expectChannel(this.config.pugChannel),
+      expectChannel(process.env.PUGS_CHANNEL),
       deleteCommandMsg(),
     ]);
   }

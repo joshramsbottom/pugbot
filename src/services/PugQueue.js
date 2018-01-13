@@ -12,7 +12,7 @@ export class PugQueue {
   }
 
   getQueueState() {
-    return `${this.queue.length}/${this.config.teamSize * 2}`;
+    return `${this.queue.length}/${process.env.TEAM_SIZE * 2}`;
   }
 
   add(member) {
@@ -27,13 +27,13 @@ export class PugQueue {
     }
 
     this.queue.push(member);
-    member.addRole(this.config.pugRole);
+    member.addRole(process.env.PUGS_ROLE);
 
     return `${String.fromCodePoint(0x2705)} ${name} added to queue. ${this.getQueueState()}`;
   }
 
   attemptGameStart(guild) {
-    if (this.queue.length < this.config.teamSize * 2) {
+    if (this.queue.length < process.env.TEAM_SIZE * 2) {
       return;
     }
 
@@ -47,7 +47,7 @@ export class PugQueue {
       setTimeout(() => {
         channel.delete()
             .then(console.log(`Deleted channel ${tempChannelName}`));
-      }, this.config.tempChannelLifetime)
+      }, process.env.TEMP_CHANNEL_LIFETIME)
     });
 
     // Empty queue
@@ -59,9 +59,9 @@ export class PugQueue {
   startIdleTimer(member) {
     this.idleTimers.set(member.id, setTimeout(() => {
       this.removeHelper(member);
-      const channel = member.guild.channels.get(this.config.pugChannel);
+      const channel = member.guild.channels.get(process.env.PUGS_CHANNEL);
       channel.send(`${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue due to idling. ${this.getQueueState()}`);
-    }, this.config.idleTime));
+    }, process.env.IDLE_TIME));
   }
 
   stopIdleTimer(member) {
@@ -72,7 +72,7 @@ export class PugQueue {
   }
 
   removeHelper(member) {
-    member.removeRole(this.config.pugRole);
+    member.removeRole(process.env.PUGS_ROLE);
 
     const memberPos = this.queue.indexOf(member);
     if (memberPos >= 0) {
@@ -87,7 +87,7 @@ export class PugQueue {
 
   removeOffline(member) {
     this.removeHelper(member);
-    const channel = member.guild.channels.get(this.config.pugChannel);
+    const channel = member.guild.channels.get(process.env.PUGS_CHANNEL);
     channel.send(`${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue due to going offline. ${this.getQueueState()}`);
   }
 }
