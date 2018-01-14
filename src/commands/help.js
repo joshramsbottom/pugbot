@@ -13,6 +13,11 @@ export function help() {
     text += printCommand(commands.get('game'));
     text += printCommand(commands.get('add'));
     text += printCommand(commands.get('rem'));
+    text += printCommand(commands.get('addtank'));
+    text += printCommand(commands.get('addflex'));
+    text += printCommand(commands.get('adddps'));
+    text += printCommand(commands.get('addsupport'));
+    text += printCommand(commands.get('rollMap'));
     embed.setDescription(text);
 
     embed.addField('How to pickup',
