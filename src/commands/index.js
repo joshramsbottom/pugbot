@@ -5,6 +5,7 @@ import { add } from './add';
 import { remove } from './remove';
 import { game } from './game';
 import { help } from './help';
+import { addRole } from './addRole';
 
 export const commands = [
   add,
@@ -12,4 +13,8 @@ export const commands = [
   remove,
   game,
   help,
+  () => addRole(process.env.TANK_ROLE, 'tank'),
+  () => addRole(process.env.FLEX_ROLE, 'flex'),
+  () => addRole(process.env.DPS_ROLE, 'dps'),
+  () => addRole(process.env.SUPPORT_ROLE, 'support'),
 ];

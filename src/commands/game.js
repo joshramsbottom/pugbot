@@ -1,4 +1,5 @@
 import { Constants, RichEmbed } from 'discord.js';
+import { getFullName } from '../util';
 
 export function game() {
 
@@ -10,7 +11,7 @@ export function game() {
 
     let text = ``;
     queue.queue.forEach(member => {
-      text += `${queue.getFullName(member)}\n`
+      text += `${getFullName(member)}\n`
     });
     embed.setDescription(text);
 

@@ -1,3 +1,5 @@
+import { getFullName } from '../util';
+
 export class PugQueue {
 
   constructor() {
@@ -6,16 +8,12 @@ export class PugQueue {
     this.idleTimers = new Map();
   }
 
-  getFullName(member) {
-    return member.user.username + '#' + member.user.discriminator;
-  }
-
   getQueueState() {
     return `${this.queue.length}/${process.env.TEAM_SIZE * 2}`;
   }
 
   add(member) {
-    const name = this.getFullName(member);
+    const name = getFullName(member);
 
     if (this.queue.includes(member)) {
       return `${name} is already queued.`;
@@ -59,7 +57,7 @@ export class PugQueue {
     this.idleTimers.set(member.id, setTimeout(() => {
       this.removeHelper(member);
       const channel = member.guild.channels.get(process.env.PUGS_CHANNEL);
-      channel.send(`${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue due to idling. ${this.getQueueState()}`);
+      channel.send(`${String.fromCodePoint(0x274C)} ${getFullName(member)} removed from queue due to idling. ${this.getQueueState()}`);
     }, process.env.IDLE_TIME));
   }
 
@@ -81,12 +79,12 @@ export class PugQueue {
 
   remove(member) {
     this.removeHelper(member);
-    return `${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue. ${this.getQueueState()}`;
+    return `${String.fromCodePoint(0x274C)} ${getFullName(member)} removed from queue. ${this.getQueueState()}`;
   }
 
   removeOffline(member) {
     this.removeHelper(member);
     const channel = member.guild.channels.get(process.env.PUGS_CHANNEL);
-    channel.send(`${String.fromCodePoint(0x274C)} ${this.getFullName(member)} removed from queue due to going offline. ${this.getQueueState()}`);
+    channel.send(`${String.fromCodePoint(0x274C)} ${getFullName(member)} removed from queue due to going offline. ${this.getQueueState()}`);
   }
 }
