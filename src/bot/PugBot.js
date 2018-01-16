@@ -10,6 +10,7 @@ export class PugBot {
 
     this.client.on('ready', () => {
       console.log("Bot running...");
+      this.client.user.setActivity('!h for help')
     });
 
     this.client.on('dispatchFail', (reason, context) => {

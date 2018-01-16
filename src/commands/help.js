@@ -28,7 +28,9 @@ export function help() {
 - Captains each select players 1 at a time.
 - When a player has been selected for a team they must go to relevant voice channel.
 - Lobby settings should use VS rules.
-- Start again for next round of pugs.`);
+- Start again for next round of pugs.
+
+Contact gryph#7273 with any suggestions or issues regarding this bot.`);
     
     return embed;
   }
