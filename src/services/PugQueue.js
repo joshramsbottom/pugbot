@@ -36,7 +36,16 @@ export class PugQueue {
     this.gameCounter += 1
     const tempChannelName = `pug-${this.gameCounter}`
 
+    let mentions = ``
+    this.queue.forEach(member => {
+      mentions += `${member}\n`
+    })
+
     guild.createChannel(tempChannelName, 'text').then((channel) => {
+      channel.send('The players for this game are:')
+
+      channel.send(mentions)
+
       channel.send('Nominate captains and draft teams. This channel will be deleted in an hour.')
 
       // Start timer to delete channel
@@ -49,7 +58,7 @@ export class PugQueue {
     // Empty queue
     this.queue.length = 0
 
-    return `Game ready to start, draft teams in channel ${tempChannelName}.`
+    return `Game ready to start, draft teams in channel #${tempChannelName}.`
   }
 
   startIdleTimer (member) {
