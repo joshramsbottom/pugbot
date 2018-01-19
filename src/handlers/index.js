@@ -1,1 +1,1 @@
-export * from './idleHandler';
+export * from './idleHandler'

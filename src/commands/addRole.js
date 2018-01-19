@@ -1,15 +1,14 @@
-import { getFullName } from '../util';
+import { getFullName } from '../util'
 
-export function addRole(roleId, roleName) {
-
-  async function handler({ message }) {
-    const member = message.member;
+export function addRole (roleId, roleName) {
+  async function handler ({ message }) {
+    const member = message.member
 
     if (member.roles.has(roleId)) {
-      member.removeRole(roleId);
+      member.removeRole(roleId)
       return `Removed ${roleName} role from ${getFullName(member)}.`
     } else {
-      member.addRole(roleId);
+      member.addRole(roleId)
       return `Added ${roleName} role to ${getFullName(member)}.`
     }
   }

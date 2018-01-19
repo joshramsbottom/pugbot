@@ -1,16 +1,15 @@
-export function expectChannel(identifier) {
-
+export function expectChannel (identifier) {
   return async (next, context) => {
     const {
       message: {
-        channel,
-      },
-    } = context;
+        channel
+      }
+    } = context
 
     if (identifier === channel.id) {
-      return next(context);
+      return next(context)
     }
 
-    return false;
-  };
+    return false
+  }
 }

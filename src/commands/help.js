@@ -1,24 +1,23 @@
-import { Constants, RichEmbed } from 'discord.js';
+import { Constants, RichEmbed } from 'discord.js'
 
-export function help() {
-
-  async function handler({ commands }) {
-    const embed = new RichEmbed();
+export function help () {
+  async function handler ({ commands }) {
+    const embed = new RichEmbed()
 
     embed.setTitle('Pickups Commands')
-        .setColor(Constants.Colors.BLUE);
+        .setColor(Constants.Colors.BLUE)
 
-    let text = ``;
-    text += printCommand(commands.get('help'));
-    text += printCommand(commands.get('game'));
-    text += printCommand(commands.get('add'));
-    text += printCommand(commands.get('rem'));
-    text += printCommand(commands.get('addtank'));
-    text += printCommand(commands.get('addflex'));
-    text += printCommand(commands.get('adddps'));
-    text += printCommand(commands.get('addsupport'));
-    text += printCommand(commands.get('rollMap'));
-    embed.setDescription(text);
+    let text = ``
+    text += printCommand(commands.get('help'))
+    text += printCommand(commands.get('game'))
+    text += printCommand(commands.get('add'))
+    text += printCommand(commands.get('rem'))
+    text += printCommand(commands.get('addtank'))
+    text += printCommand(commands.get('addflex'))
+    text += printCommand(commands.get('adddps'))
+    text += printCommand(commands.get('addsupport'))
+    text += printCommand(commands.get('rollMap'))
+    embed.setDescription(text)
 
     embed.addField('How to pickup',
         `- Make sure you have the relevant roles with regards to hero pool.
@@ -30,23 +29,23 @@ export function help() {
 - Lobby settings should use VS rules.
 - Start again for next round of pugs.
 
-Contact gryph#7273 with any suggestions or issues regarding this bot.`);
-    
-    return embed;
+Contact gryph#7273 with any suggestions or issues regarding this bot.`)
+
+    return embed
   }
 
-  function printCommand(command) {
-    let text = `!${command.name}`;
+  function printCommand (command) {
+    let text = `!${command.name}`
     command.aliases.forEach(alias => {
-      text += `, !${alias}`;
-    });
-    return `${text} - ${command.description}\n`;
+      text += `, !${alias}`
+    })
+    return `${text} - ${command.description}\n`
   }
 
   return {
     handler,
     triggers: ['help', 'h', 'pugshelp'],
     group: 'pugs',
-    description: 'Print this message.',
+    description: 'Print this message.'
   }
 }

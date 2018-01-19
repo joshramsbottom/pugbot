@@ -1,9 +1,8 @@
-export function remove() {
+export function remove () {
+  async function handler ({ message, services }) {
+    const queue = services.get('pugs.queue')
 
-  async function handler({ message, services }) {
-    const queue = services.get('pugs.queue');
-
-    return queue.remove(message.member);
+    return queue.remove(message.member)
   }
 
   return {
@@ -12,4 +11,4 @@ export function remove() {
     group: 'pugs',
     description: 'Remove yourself from the pug queue.'
   }
-};
+}

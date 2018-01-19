@@ -1,8 +1,7 @@
-import { deleteCommandMsg } from '../middleware';
+import { deleteCommandMsg } from '../middleware'
 
-export function rollMap() {
-
-  async function handler() {
+export function rollMap () {
+  async function handler () {
     let maps = [
       'Dorado',
       'Eichenwalde',
@@ -16,22 +15,22 @@ export function rollMap() {
       'Nepal',
       'Temple of Anubis',
       'Volskaya Industries',
-      'Watchpoint: Gibraltar',
-    ];
+      'Watchpoint: Gibraltar'
+    ]
 
     maps.forEach((map, index) => {
-      maps[index] = `Travelling to... ${map}`;
-    });
+      maps[index] = `Travelling to... ${map}`
+    })
 
-    return maps;
+    return maps
   }
 
   return {
     handler,
     triggers: ['rollmap', 'rollMap', 'maproll', 'mapRoll'],
     middleware: [
-      deleteCommandMsg(),
+      deleteCommandMsg()
     ],
-    description: 'Roll a random map.',
-  };
-};
+    description: 'Roll a random map.'
+  }
+}
