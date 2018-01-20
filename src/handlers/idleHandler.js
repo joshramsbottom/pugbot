@@ -5,7 +5,7 @@ export function idleHandler (oldMember, newMember, services) {
 
   const queueService = services.get('pugs.queue')
 
-  if (queueService.queue.includes(newMember)) {
+  if (queueService.queue.includes(newMember) || newMember.roles.has(process.env.PUGS_ROLE)) {
     if (newMember.presence.status === 'idle') {
       queueService.startIdleTimer(newMember)
     } else if (newMember.presence.status === 'offline') {
