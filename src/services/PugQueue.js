@@ -42,9 +42,7 @@ export class PugQueue {
     })
 
     guild.createChannel(tempChannelName, 'text').then((channel) => {
-      channel.send('The players for this game are:')
-
-      channel.send(mentions)
+      channel.send(`The players for this game are:\n${mentions}`)
 
       channel.send('Nominate captains and draft teams. This channel will be deleted in an hour.')
 
@@ -53,12 +51,12 @@ export class PugQueue {
         channel.delete()
             .then(console.log(`Deleted channel ${tempChannelName}`))
       }, process.env.TEMP_CHANNEL_LIFETIME)
+
+      channel.guild.channels.get(process.env.PUGS_CHANNEL).send(`Game ready to start, draft teams in channel ${channel}.`)
     })
 
     // Empty queue
     this.queue.length = 0
-
-    return `Game ready to start, draft teams in channel #${tempChannelName}.`
   }
 
   startIdleTimer (member) {
