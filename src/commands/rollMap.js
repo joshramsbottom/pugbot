@@ -3,19 +3,27 @@ import { deleteCommandMsg } from '../middleware'
 export function rollMap () {
   async function handler () {
     let maps = [
-      'Dorado',
-      'Eichenwalde',
+      // Assault Maps
       'Hanamura',
-      'Hollyword',
-      'Ilios',
-      "King's Row",
-      'Lijiang Tower',
-      'Route 66',
-      'Numbani',
-      'Nepal',
+      'Horizon Lunar Colony',
       'Temple of Anubis',
       'Volskaya Industries',
-      'Watchpoint: Gibraltar'
+      // Escort Maps
+      'Dorado',
+      'Junkertown',
+      'Route 66',
+      'Watchpoint: Gibraltar',
+      // Hybrid Maps
+      'Blizzard World',
+      'Eichenwalde',
+      'Hollywood',
+      "King's Row",
+      'Numbani',
+      // Control Maps
+      'Ilios',
+      'Lijiang Tower',
+      'Nepal',
+      'Oasis'
     ]
 
     maps.forEach((map, index) => {
