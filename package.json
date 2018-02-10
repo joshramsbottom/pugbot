@@ -1,9 +1,6 @@
 {
   "name": "pugbot",
   "version": "0.0.1",
-  "engines": {
-    "node": "9.3.0"
-  },
   "description": "A Discord bot for organizing pickups.",
   "main": "index.js",
   "scripts": {
