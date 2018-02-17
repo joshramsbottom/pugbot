@@ -4,7 +4,7 @@
   "description": "A Discord bot for organizing pickups.",
   "main": "index.js",
   "scripts": {
-    "develop": "nodemon src/index.js --exec babel-node",
+    "develop": "nodemon src/index.js --exec \"node -r 'dotenv/config' -r 'babel-register'\"",
     "build": "babel src -d dist",
     "start": "node -r dotenv/config dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
