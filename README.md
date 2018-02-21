@@ -4,7 +4,7 @@ A Discord bot for organising pickup games.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. Although these steps make use of yarn, npm can be used too.
+These instructions will get you a copy of the bot up and running on your local machine for development and testing purposes. Although these steps make use of yarn, npm can be used too.
 
 ### Prerequisites
 
@@ -24,7 +24,7 @@ Inside the directory, install required packages
 yarn install
 ```
 
-Lastly, create a file named `.env`, see [Setting up .env file](#setting-up-.env-file) for what to put in it
+Lastly, create a file named `.env`, see [Setting up .env file](#setting-up-env-file) for what to put in it
 
 ## Usage
 
