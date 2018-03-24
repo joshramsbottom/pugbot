@@ -16,7 +16,6 @@ export const commands = [
   game,
   help,
   () => addRole(process.env.TANK_ROLE, 'tank'),
-  () => addRole(process.env.FLEX_ROLE, 'flex'),
   () => addRole(process.env.DPS_ROLE, 'dps'),
   () => addRole(process.env.SUPPORT_ROLE, 'support'),
   rollMap,
