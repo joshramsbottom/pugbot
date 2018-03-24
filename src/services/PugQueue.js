@@ -1,4 +1,4 @@
-import { getFullName } from '../util'
+import { getFullName, getRoleEmoji, getRandomMap } from '../util'
 
 export class PugQueue {
   constructor () {
@@ -13,6 +13,7 @@ export class PugQueue {
 
   add (member) {
     const name = getFullName(member)
+    const roleEmoji = getRoleEmoji(member)
 
     if (this.queue.includes(member)) {
       return `${name} is already queued.`
@@ -25,7 +26,7 @@ export class PugQueue {
     this.queue.push(member)
     member.addRole(process.env.PUGS_ROLE)
 
-    return `${String.fromCodePoint(0x2705)} ${name} added to queue. ${this.getQueueState()}`
+    return `${String.fromCodePoint(0x2705)} ${name} ${roleEmoji} added to queue. ${this.getQueueState()}`
   }
 
   attemptGameStart (guild) {
@@ -33,27 +34,25 @@ export class PugQueue {
       return
     }
 
-    this.gameCounter += 1
-    const tempChannelName = `pug-${this.gameCounter}`
-
     let mentions = ``
     this.queue.forEach(member => {
-      mentions += `${member}\n`
+      const roleEmoji = getRoleEmoji(member)
+      mentions += `${member} ${roleEmoji}\n`
     })
 
-    guild.createChannel(tempChannelName, 'text').then((channel) => {
-      channel.send(`The players for this game are:\n${mentions}`)
+    // Announce game start and alert players
+    const announceChannel = guild.client.channels.get(process.env.PUGS_ANNOUNCEMENTCHANNEL)
+    const map = getRandomMap()
+    announceChannel.send(`❮❮❮\t\t **Match Starting!**\t\t ❯❯❯\n
+*Following players head over to Match Draft:*\n
+${mentions}\n
+${map}\n
+❯❯❯\t\t*end of match announcement*\t\t❮❮❮\n
+`)
 
-      channel.send('Nominate captains and draft teams. This channel will be deleted in an hour.')
-
-      // Start timer to delete channel
-      setTimeout(() => {
-        channel.delete()
-            .then(console.log(`Deleted channel ${tempChannelName}`))
-      }, process.env.TEMP_CHANNEL_LIFETIME)
-
-      channel.guild.channels.get(process.env.PUGS_CHANNEL).send(`Game ready to start, draft teams in channel ${channel}.`)
-    })
+    // Notification for queue full
+    const pugsChannel = guild.client.channels.get(process.env.PUGS_CHANNEL)
+    pugsChannel.send(`We have our ${process.env.TEAM_SIZE * 2} players, lets go! Check ${announceChannel} for more details.`)
 
     // Empty queue
     this.queue.length = 0

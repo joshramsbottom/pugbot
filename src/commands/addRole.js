@@ -15,7 +15,7 @@ export function addRole (roleId, roleName) {
 
   return {
     handler,
-    triggers: [`add${roleName}`],
+    triggers: [`${roleName}`],
     group: 'pugs',
     description: `Add or remove the ${roleName} role to/from yourself.`
   }

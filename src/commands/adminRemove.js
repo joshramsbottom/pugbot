@@ -5,7 +5,7 @@ export function adminRemove () {
   async function handler ({ message, services }) {
     const guild = message.guild
     if (!guild.available) {
-      return;
+      return
     }
 
     const queue = services.get('pugs.queue')

@@ -5,29 +5,29 @@ export function help () {
     const embed = new RichEmbed()
 
     embed.setTitle('Pickups Commands')
-        .setColor(Constants.Colors.BLUE)
+      .setColor(Constants.Colors.BLUE)
 
     let text = ``
     text += printCommand(commands.get('help'))
     text += printCommand(commands.get('game'))
     text += printCommand(commands.get('add'))
-    text += printCommand(commands.get('rem'))
-    text += printCommand(commands.get('addtank'))
-    text += printCommand(commands.get('addflex'))
-    text += printCommand(commands.get('adddps'))
-    text += printCommand(commands.get('addsupport'))
+    text += printCommand(commands.get('done'))
+    text += printCommand(commands.get('tank'))
+    text += printCommand(commands.get('dps'))
+    text += printCommand(commands.get('support'))
     text += printCommand(commands.get('rollMap'))
     embed.setDescription(text)
 
-    embed.addField('How to pickup',
-        `- Make sure you have the relevant roles with regards to hero pool.
-- Add yourself to the pugs queue, which allows you to view voice channels, !pugs.
-- When the queue is full, a temporary text channel will be created for picking captains and teams for that game.
-- Everyone vote on 2 captains, Don't pick the same people to be captain every map.
-- Captains each select players 1 at a time.
-- When a player has been selected for a team they must go to relevant voice channel.
-- Lobby settings should use VS rules.
-- Start again for next round of pugs.
+    embed.addField('How to join in on the action',
+      `1. Add your in-game roles (!tank, !dps, !support).
+2. Add yourself to the queue (!pugs).
+3. When the queue is full, you will be notified.
+4. Join the relevant Match Draft voice channel.
+5. A moderator will split the teams.
+6. Goodluck and have fun!
+
+- Only one map is played per match (BO1).
+- Lobby will be created with 'Competitive' preset and killcam off.
 
 Contact gryph#7273 with any suggestions or issues regarding this bot.`)
 
@@ -44,7 +44,7 @@ Contact gryph#7273 with any suggestions or issues regarding this bot.`)
 
   return {
     handler,
-    triggers: ['help', 'h', 'pugshelp'],
+    triggers: ['help', 'h'],
     group: 'pugs',
     description: 'Print this message.'
   }
