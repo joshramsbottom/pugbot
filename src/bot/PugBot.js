@@ -1,6 +1,6 @@
 import { Client } from 'ghastly'
 import { PugQueue } from '../services'
-import { expectChannel, deleteCommandMsg } from '../middleware'
+import { cacheMember, expectChannel, deleteCommandMsg } from '../middleware'
 import { idleHandler } from '../handlers'
 
 export class PugBot {
@@ -43,6 +43,7 @@ export class PugBot {
 
   applyPugsMiddleware () {
     this.client.commands.applyGroupMiddleware('pugs', [
+      cacheMember(),
       expectChannel(process.env.PUGS_CHANNEL),
       deleteCommandMsg()
     ])
