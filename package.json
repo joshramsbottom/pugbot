@@ -21,9 +21,10 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "common-tags": "^1.8.0",
     "discord.js": "^11.3.2",
-    "dotenv": "^5.0.1",
-    "ghastly": "^0.4.1"
+    "discord.js-commando": "^0.10.0",
+    "dotenv": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.14.8"
