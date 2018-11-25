@@ -1,21 +1,16 @@
 {
   "name": "pugbot",
   "version": "0.2.0",
-  "description": "A Discord bot for organizing pickups.",
+  "description": "A Discord bot for organizing pickup games.",
   "main": "index.js",
   "scripts": {
     "develop": "nodemon src/index.js --exec \"node -r 'dotenv/config' -r '@babel/register'\"",
-    "build": "babel src -d dist",
+    "clean": "rm -rf dist && mkdir dist",
+    "build": "npm run clean && babel src -d dist",
     "start": "node -r dotenv/config dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "yarn run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "https://github.com/joshramsbottom/pugbot.git",
-  "keywords": [
-    "discord",
-    "ghastly",
-    "pickup-bot"
-  ],
   "author": "joshramsbottom",
   "license": "MIT",
   "babel": {
