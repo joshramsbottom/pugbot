@@ -1,4 +1,4 @@
-import {Command} from 'discord.js-commando'
+import { Command } from 'discord.js-commando'
 
 export default class AddCommand extends Command {
   constructor(client) {
@@ -16,7 +16,7 @@ export default class AddCommand extends Command {
   async run(msg) {
     msg.delete()
 
-    const queue = this.client.queue
+    const { queue } = this.client
     const reply = queue.add(msg.member)
     await msg.say(reply)
     return queue.attemptGameStart(msg.guild)

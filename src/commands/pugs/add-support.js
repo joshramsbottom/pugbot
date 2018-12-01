@@ -1,8 +1,8 @@
-import {Command} from 'discord.js-commando'
+import { Command } from 'discord.js-commando'
 
-import {getFullName} from '../../util'
+import { getFullName } from '../../util'
 
-const {SUPPORT_ROLE} = process.env
+const { SUPPORT_ROLE } = process.env
 
 export default class AddSupportRoleCommand extends Command {
   constructor(client) {
@@ -20,7 +20,7 @@ export default class AddSupportRoleCommand extends Command {
   run(msg) {
     msg.delete()
 
-    const member = msg.member
+    const { member } = msg
     if (member.roles.has(SUPPORT_ROLE)) {
       member.removeRole(SUPPORT_ROLE)
       return msg.say(`Removed support role from ${getFullName(member)}.`)

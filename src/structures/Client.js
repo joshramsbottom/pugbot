@@ -1,6 +1,6 @@
-import {CommandoClient} from 'discord.js-commando'
+import { CommandoClient } from 'discord.js-commando'
 
-import PugQueue from './PugQueue'
+import PugQueue from './pug-queue'
 
 export default class PugBotClient extends CommandoClient {
   constructor(options) {

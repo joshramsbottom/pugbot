@@ -1,1 +1,1 @@
-export * from './presenceUpdateHandler'
+export * from './presence-update-handler'

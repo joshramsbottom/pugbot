@@ -27,7 +27,10 @@
   },
   "xo": {
     "space": true,
-    "semicolon": false
+    "semicolon": false,
+    "rules": {
+      "object-curly-spacing": ["error", "always"]
+    }
   },
   "dependencies": {
     "@babel/cli": "^7.0.0",

@@ -1,1 +1,1 @@
-export * from './expectChannel'
+export * from './expect-channel'

@@ -1,8 +1,8 @@
-import {Command} from 'discord.js-commando'
+import { Command } from 'discord.js-commando'
 
-import {getFullName} from '../../util'
+import { getFullName } from '../../util'
 
-const {TANK_ROLE} = process.env
+const { TANK_ROLE } = process.env
 
 export default class AddTankRoleCommand extends Command {
   constructor(client) {
@@ -20,7 +20,7 @@ export default class AddTankRoleCommand extends Command {
   run(msg) {
     msg.delete()
 
-    const member = msg.member
+    const { member } = msg
     if (member.roles.has(TANK_ROLE)) {
       member.removeRole(TANK_ROLE)
       return msg.say(`Removed tank role from ${getFullName(member)}.`)

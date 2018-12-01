@@ -1,4 +1,4 @@
-import {Command} from 'discord.js-commando'
+import { Command } from 'discord.js-commando'
 
 export default class RemoveCommand extends Command {
   constructor(client) {

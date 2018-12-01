@@ -1,8 +1,8 @@
-import {stripIndents} from 'common-tags'
+import { stripIndents } from 'common-tags'
 
-import {getFullName, getRoleEmoji, getRandomMap} from '../util'
+import { getFullName, getRoleEmoji, getRandomMap } from '../util'
 
-const {TEAM_SIZE, PUGS_ROLE, PUGS_ANNOUNCEMENT_CHANNEL, PUGS_CHANNEL, IDLE_TIME} = process.env
+const { TEAM_SIZE, PUGS_ROLE, PUGS_ANNOUNCEMENT_CHANNEL, PUGS_CHANNEL, IDLE_TIME } = process.env
 
 export default class PugQueue {
   constructor() {

@@ -1,6 +1,6 @@
-import {Constants, RichEmbed} from 'discord.js'
-import {Command} from 'discord.js-commando'
-import {stripIndent} from 'common-tags'
+import { Constants, RichEmbed } from 'discord.js'
+import { Command } from 'discord.js-commando'
+import { stripIndent } from 'common-tags'
 
 export default class HelpCommand extends Command {
   constructor(client) {
@@ -30,7 +30,7 @@ export default class HelpCommand extends Command {
     embed.setTitle('Pickups Commands')
       .setColor(Constants.Colors.BLUE)
 
-    const commands = this.client.registry.commands
+    const { commands } = this.client.registry
     let text = ''
     text += this.printCommand(commands.get('help'))
     text += this.printCommand(commands.get('game'))

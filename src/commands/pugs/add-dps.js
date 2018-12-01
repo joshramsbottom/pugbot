@@ -1,8 +1,8 @@
-import {Command} from 'discord.js-commando'
+import { Command } from 'discord.js-commando'
 
-import {getFullName} from '../../util'
+import { getFullName } from '../../util'
 
-const {DPS_ROLE} = process.env
+const { DPS_ROLE } = process.env
 
 export default class AddDpsRoleCommand extends Command {
   constructor(client) {
@@ -20,7 +20,7 @@ export default class AddDpsRoleCommand extends Command {
   run(msg) {
     msg.delete()
 
-    const member = msg.member
+    const { member } = msg
     if (member.roles.has(DPS_ROLE)) {
       member.removeRole(DPS_ROLE)
       return msg.say(`Removed dps role from ${getFullName(member)}.`)

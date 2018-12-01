@@ -1,8 +1,8 @@
 import path from 'path'
 
-import Client from './structures/Client'
-import {presenceUpdateHandler} from './handlers'
-import {expectChannel} from './inhibitors'
+import Client from './structures/client'
+import { presenceUpdateHandler } from './handlers'
+import { expectChannel } from './inhibitors'
 
 const {
   PUGS_CHANNEL,
@@ -37,7 +37,6 @@ client.on('ready', () => {
 
 client.on('disconnect', event => {
   console.error(`[DISCONNECT] Disconnected with code ${event.code}.`)
-  process.exit(0)
 })
 
 client.on('error', err => console.error('[ERROR]', err))
@@ -52,5 +51,5 @@ client.login(TOKEN)
 
 process.on('unhandledRejection', err => {
   console.error('[FATAL] Unhandled Promise Rejection.', err)
-  process.exit(1)
+  throw err
 })
