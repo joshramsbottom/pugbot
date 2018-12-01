@@ -14,6 +14,10 @@ export default class PugQueue {
     return `${this.queue.length}/${TEAM_SIZE * 2}`
   }
 
+  includes (element) {
+    return this.queue.includes(element)
+  }
+
   add (member) {
     const name = getFullName(member)
     const roleEmoji = getRoleEmoji(member)

@@ -1,6 +1,7 @@
 import path from 'path';
 
 import Client from './structures/Client'
+import { presenceUpdateHandler } from './handlers'
 import { expectChannel } from './inhibitors'
 
 const {
@@ -44,6 +45,8 @@ client.on('error', err => console.error('[ERROR]', err))
 client.on('warn', err => console.warn('[WARNING]', err))
 
 client.on('commandError', (command, err) => console.error('[COMMAND ERROR]', command.name, err))
+
+client.on('presenceUpdate', (oldMember, newMember) => presenceUpdateHandler(oldMember, newMember, client.queue))
 
 client.login(TOKEN)
 
