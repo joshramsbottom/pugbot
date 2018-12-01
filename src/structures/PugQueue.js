@@ -91,6 +91,8 @@ export default class PugQueue {
   remove (member) {
     if (this.removeHelper(member)) {
       return `${String.fromCodePoint(0x274C)} ${getFullName(member)} removed from queue. ${this.printQueueState()}`
+    } else {
+      return `${getFullName(member)} you are not in the queue silly!`
     }
   }
 
