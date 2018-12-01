@@ -1,20 +1,20 @@
-import path from 'path';
+import path from 'path'
 
 import Client from './structures/Client'
-import { presenceUpdateHandler } from './handlers'
-import { expectChannel } from './inhibitors'
+import {presenceUpdateHandler} from './handlers'
+import {expectChannel} from './inhibitors'
 
 const {
   PUGS_CHANNEL,
   OWNERS,
-  TOKEN,
+  TOKEN
 } = process.env
 
 const client = new Client({
   commandPrefix: '!',
   unknownCommandResponse: false,
   owner: OWNERS.split(','),
-  disableEveryone: true,
+  disableEveryone: true
 })
 
 client.registry
@@ -24,7 +24,7 @@ client.registry
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({
-    help: false,
+    help: false
   })
   .registerCommandsIn(path.join(__dirname, 'commands'))
 
@@ -37,7 +37,7 @@ client.on('ready', () => {
 
 client.on('disconnect', event => {
   console.error(`[DISCONNECT] Disconnected with code ${event.code}.`)
-  process.exit(0);
+  process.exit(0)
 })
 
 client.on('error', err => console.error('[ERROR]', err))

@@ -1,9 +1,9 @@
-export function getFullName (member) {
+export function getFullName(member) {
   return member.user.username + '#' + member.user.discriminator
 }
 
-export function getRoleEmoji (member) {
-  let roles = ``
+export function getRoleEmoji(member) {
+  let roles = ''
   if (member.roles.has(process.env.DPS_ROLE)) {
     roles += process.env.DPS_EMOJI
   }
@@ -16,8 +16,8 @@ export function getRoleEmoji (member) {
   return roles
 }
 
-export function getRandomMap () {
-  let maps = [
+export function getRandomMap() {
+  const maps = [
     // Assault Maps
     'Hanamura',
     'Horizon Lunar Colony',
@@ -42,7 +42,7 @@ export function getRandomMap () {
     'Lijiang Tower',
     'Nepal',
     'Oasis',
-    'Busan',
+    'Busan'
   ]
 
   return maps[Math.floor(Math.random() * maps.length)]

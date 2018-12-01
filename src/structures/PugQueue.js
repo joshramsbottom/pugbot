@@ -1,24 +1,24 @@
-import { stripIndents } from 'common-tags'
+import {stripIndents} from 'common-tags'
 
-import { getFullName, getRoleEmoji, getRandomMap } from '../util'
+import {getFullName, getRoleEmoji, getRandomMap} from '../util'
 
-const { TEAM_SIZE, PUGS_ROLE, PUGS_ANNOUNCEMENT_CHANNEL, PUGS_CHANNEL, IDLE_TIME } = process.env
+const {TEAM_SIZE, PUGS_ROLE, PUGS_ANNOUNCEMENT_CHANNEL, PUGS_CHANNEL, IDLE_TIME} = process.env
 
 export default class PugQueue {
-  constructor () {
+  constructor() {
     this.queue = []
     this.idleTimers = new Map()
   }
 
-  printQueueState () {
+  printQueueState() {
     return `${this.queue.length}/${TEAM_SIZE * 2}`
   }
 
-  includes (element) {
+  includes(element) {
     return this.queue.includes(element)
   }
 
-  add (member) {
+  add(member) {
     const name = getFullName(member)
     const roleEmoji = getRoleEmoji(member)
 
@@ -27,7 +27,7 @@ export default class PugQueue {
     }
 
     if (this.queue.length >= 12) {
-      return `Queue is full.`
+      return 'Queue is full.'
     }
 
     this.queue.push(member)
@@ -36,12 +36,12 @@ export default class PugQueue {
     return `${String.fromCodePoint(0x2705)} ${name} ${roleEmoji} added to queue. ${this.printQueueState()}`
   }
 
-  attemptGameStart (guild) {
+  attemptGameStart(guild) {
     if (this.queue.length < TEAM_SIZE * 2) {
       return
     }
 
-    let mentions = ``
+    let mentions = ''
     this.queue.forEach(member => {
       const roleEmoji = getRoleEmoji(member)
       mentions += `${member} ${roleEmoji}\n`
@@ -65,7 +65,7 @@ export default class PugQueue {
     this.queue.length = 0
   }
 
-  startIdleTimer (member) {
+  startIdleTimer(member) {
     this.idleTimers.set(member.id, setTimeout(() => {
       if (this.removeHelper(member)) {
         const channel = member.guild.channels.get(PUGS_CHANNEL)
@@ -74,14 +74,14 @@ export default class PugQueue {
     }, IDLE_TIME))
   }
 
-  stopIdleTimer (member) {
+  stopIdleTimer(member) {
     const timeout = this.idleTimers.get(member.id)
     if (timeout !== undefined) {
       clearTimeout(timeout)
     }
   }
 
-  removeHelper (member) {
+  removeHelper(member) {
     member.removeRole(PUGS_ROLE)
 
     const memberPos = this.queue.indexOf(member)
@@ -92,15 +92,14 @@ export default class PugQueue {
     return false
   }
 
-  remove (member) {
+  remove(member) {
     if (this.removeHelper(member)) {
       return `${String.fromCodePoint(0x274C)} ${getFullName(member)} removed from queue. ${this.printQueueState()}`
-    } else {
-      return `${getFullName(member)} you are not in the queue silly!`
     }
+    return `${getFullName(member)} you are not in the queue silly!`
   }
 
-  removeOffline (member) {
+  removeOffline(member) {
     if (this.removeHelper(member)) {
       const channel = member.guild.channels.get(PUGS_CHANNEL)
       channel.send(`${String.fromCodePoint(0x274C)} ${getFullName(member)} removed from queue due to going offline. ${this.printQueueState()}`)

@@ -1,8 +1,8 @@
-import { Command } from 'discord.js-commando'
+import {Command} from 'discord.js-commando'
 
-import { getFullName } from '../../util'
+import {getFullName} from '../../util'
 
-const { DPS_ROLE } = process.env
+const {DPS_ROLE} = process.env
 
 export default class AddDpsRoleCommand extends Command {
   constructor(client) {
@@ -13,7 +13,7 @@ export default class AddDpsRoleCommand extends Command {
       memberName: 'add-dps',
       description: 'Add the dps role to yourself for PUGS. Running this again will remove the role.',
       guildOnly: true,
-      clientPermissions: ['MANAGE_MESSAGES'],
+      clientPermissions: ['MANAGE_MESSAGES']
     })
   }
 
@@ -24,9 +24,8 @@ export default class AddDpsRoleCommand extends Command {
     if (member.roles.has(DPS_ROLE)) {
       member.removeRole(DPS_ROLE)
       return msg.say(`Removed dps role from ${getFullName(member)}.`)
-    } else {
-      member.addRole(DPS_ROLE)
-      return msg.say(`Added dps role to ${getFullName(member)}.`)
     }
+    member.addRole(DPS_ROLE)
+    return msg.say(`Added dps role to ${getFullName(member)}.`)
   }
 }

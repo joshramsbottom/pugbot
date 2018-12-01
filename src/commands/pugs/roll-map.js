@@ -1,6 +1,6 @@
-import { Command } from 'discord.js-commando'
+import {Command} from 'discord.js-commando'
 
-import { getRandomMap } from '../../util'
+import {getRandomMap} from '../../util'
 
 export default class RollMapCommand extends Command {
   constructor(client) {
@@ -11,7 +11,7 @@ export default class RollMapCommand extends Command {
       memberName: 'roll-map',
       description: 'Roll a random map.',
       guildOnly: true,
-      clientPermissions: ['MANAGE_MESSAGES'],
+      clientPermissions: ['MANAGE_MESSAGES']
     })
   }
 

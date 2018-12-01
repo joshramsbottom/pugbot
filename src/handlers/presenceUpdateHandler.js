@@ -1,4 +1,4 @@
-export function presenceUpdateHandler (oldMember, newMember, queue) {
+export function presenceUpdateHandler(oldMember, newMember, queue) {
   if (oldMember.presence.status === newMember.presence.status) {
     return
   }

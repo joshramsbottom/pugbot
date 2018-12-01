@@ -1,6 +1,6 @@
-import { Constants, RichEmbed } from 'discord.js'
-import { Command } from 'discord.js-commando'
-import { stripIndent } from 'common-tags'
+import {Constants, RichEmbed} from 'discord.js'
+import {Command} from 'discord.js-commando'
+import {stripIndent} from 'common-tags'
 
 export default class HelpCommand extends Command {
   constructor(client) {
@@ -11,7 +11,7 @@ export default class HelpCommand extends Command {
       memberName: 'help',
       description: 'Print some helpful information about pugs',
       guildOnly: true,
-      clientPermissions: ['MANAGE_MESSAGES'],
+      clientPermissions: ['MANAGE_MESSAGES']
     })
   }
 

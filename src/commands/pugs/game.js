@@ -1,7 +1,7 @@
-import { Constants, RichEmbed } from 'discord.js'
-import { Command } from 'discord.js-commando'
+import {Constants, RichEmbed} from 'discord.js'
+import {Command} from 'discord.js-commando'
 
-import { getFullName } from '../../util'
+import {getFullName} from '../../util'
 
 export default class GameCommand extends Command {
   constructor(client) {
@@ -12,7 +12,7 @@ export default class GameCommand extends Command {
       memberName: 'game',
       description: 'Get next pugs game status',
       guildOnly: true,
-      clientPermissions: ['MANAGE_MESSAGES'],
+      clientPermissions: ['MANAGE_MESSAGES']
     })
   }
 
@@ -24,7 +24,7 @@ export default class GameCommand extends Command {
 
     embed.setTitle(`List of players added to game - ${queue.printQueueState()}`).setColor(Constants.Colors.GREEN)
 
-    let text = ``
+    let text = ''
     queue.queue.forEach(member => {
       text += `${getFullName(member)}\n`
     })

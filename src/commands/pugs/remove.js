@@ -1,4 +1,4 @@
-import { Command } from 'discord.js-commando'
+import {Command} from 'discord.js-commando'
 
 export default class RemoveCommand extends Command {
   constructor(client) {
@@ -9,7 +9,7 @@ export default class RemoveCommand extends Command {
       memberName: 'remove',
       description: 'Remove yourself from the queue for the next game.',
       guildOnly: true,
-      clientPermissions: ['MANAGE_MESSAGES'],
+      clientPermissions: ['MANAGE_MESSAGES']
     })
   }
 

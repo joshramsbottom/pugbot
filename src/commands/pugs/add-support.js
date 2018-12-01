@@ -1,8 +1,8 @@
-import { Command } from 'discord.js-commando'
+import {Command} from 'discord.js-commando'
 
-import { getFullName } from '../../util'
+import {getFullName} from '../../util'
 
-const { SUPPORT_ROLE } = process.env
+const {SUPPORT_ROLE} = process.env
 
 export default class AddSupportRoleCommand extends Command {
   constructor(client) {
@@ -13,7 +13,7 @@ export default class AddSupportRoleCommand extends Command {
       memberName: 'add-support',
       description: 'Add the support role to yourself for PUGS. Running this again will remove the role.',
       guildOnly: true,
-      clientPermissions: ['MANAGE_MESSAGES'],
+      clientPermissions: ['MANAGE_MESSAGES']
     })
   }
 
@@ -24,9 +24,8 @@ export default class AddSupportRoleCommand extends Command {
     if (member.roles.has(SUPPORT_ROLE)) {
       member.removeRole(SUPPORT_ROLE)
       return msg.say(`Removed support role from ${getFullName(member)}.`)
-    } else {
-      member.addRole(SUPPORT_ROLE)
-      return msg.say(`Added support role to ${getFullName(member)}.`)
     }
+    member.addRole(SUPPORT_ROLE)
+    return msg.say(`Added support role to ${getFullName(member)}.`)
   }
 }
