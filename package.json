@@ -29,7 +29,10 @@
     "space": true,
     "semicolon": false,
     "rules": {
-      "object-curly-spacing": ["error", "always"]
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ]
     }
   },
   "dependencies": {
@@ -40,7 +43,8 @@
     "discord.js": "^11.3.2",
     "discord.js-commando": "^0.10.0",
     "dotenv": "^5.0.1",
-    "mongodb": "^3.1.10"
+    "mongodb": "^3.1.10",
+    "node-fetch": "^2.3.0"
   },
   "devDependencies": {
     "@babel/register": "^7.0.0",

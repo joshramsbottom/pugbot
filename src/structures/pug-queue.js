@@ -1,6 +1,8 @@
 import { stripIndents } from 'common-tags'
 
 import { getFullName, getRoleEmoji, getRandomMap } from '../util'
+import { getBattleTag } from '../util/database'
+import { getCompRating } from '../util/ow-api'
 
 const { TEAM_SIZE, PUGS_ROLE, PUGS_ANNOUNCEMENT_CHANNEL, PUGS_CHANNEL, IDLE_TIME } = process.env
 
@@ -36,16 +38,20 @@ export default class PugQueue {
     return `${String.fromCodePoint(0x2705)} ${name} ${roleEmoji} added to queue. ${this.printQueueState()}`
   }
 
-  attemptGameStart(guild) {
+  async attemptGameStart(guild) {
     if (this.queue.length < TEAM_SIZE * 2) {
       return
     }
 
     let mentions = ''
-    this.queue.forEach(member => {
+    for (const member of this.queue) {
+      const battleTag = await getBattleTag(member.id)
+      const rating = await getCompRating(battleTag)
+
       const roleEmoji = getRoleEmoji(member)
-      mentions += `${member} ${roleEmoji}\n`
-    })
+
+      mentions += `${member} (${rating}) ${roleEmoji}\n`
+    }
 
     // Announce game start and alert players
     const announceChannel = guild.client.channels.get(PUGS_ANNOUNCEMENT_CHANNEL)

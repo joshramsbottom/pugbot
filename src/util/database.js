@@ -2,14 +2,14 @@ import { MongoClient } from 'mongodb'
 
 const { MONGODB_PASSWD } = process.env
 
-const uri = `mongodb+srv://pugbot-user:${MONGODB_PASSWD}@pugbot-cluster-3gn5k.mongodb.net/test?retryWrites=true`
+const URI = `mongodb+srv://pugbot-user:${MONGODB_PASSWD}@pugbot-cluster-3gn5k.mongodb.net/test?retryWrites=true`
 
 export async function insertBattleTag(memberId, battleTag) {
   if (!memberId || !battleTag) {
     return 0
   }
 
-  const client = new MongoClient(uri)
+  const client = new MongoClient(URI)
   await client.connect()
 
   const db = client.db('test')
@@ -27,5 +27,28 @@ export async function insertBattleTag(memberId, battleTag) {
   })
 
   client.close()
-  return r.insertedCount || r.modifiedCount
+  return r.upsertedCount || r.modifiedCount || r.matchedCount
+}
+
+export async function getBattleTag(memberId) {
+  if (!memberId) {
+    return null
+  }
+
+  const client = new MongoClient(URI)
+  await client.connect()
+
+  const db = client.db('test')
+
+  const doc = await db.collection('users').findOne({
+    _id: memberId
+  })
+
+  client.close()
+
+  if (doc) {
+    return doc.battleTag
+  }
+
+  return 'N/A'
 }
