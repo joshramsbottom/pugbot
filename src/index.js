@@ -1,6 +1,6 @@
 import path from 'path'
 
-import Client from './structures/client'
+import PugBotClient from './structures/client'
 import { presenceUpdateHandler } from './handlers'
 import { expectChannel } from './inhibitors'
 
@@ -10,7 +10,7 @@ const {
   TOKEN
 } = process.env
 
-const client = new Client({
+const client = new PugBotClient({
   commandPrefix: '!',
   unknownCommandResponse: false,
   owner: OWNERS.split(','),
