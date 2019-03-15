@@ -23,12 +23,14 @@ export function getRandomMap() {
     'Horizon Lunar Colony',
     'Temple of Anubis',
     'Volskaya Industries',
+    'Paris',
 
     // Escort Maps
     'Dorado',
     'Junkertown',
     'Route 66',
     'Watchpoint: Gibraltar',
+    'Rialto',
 
     // Hybrid Maps
     'Blizzard World',
