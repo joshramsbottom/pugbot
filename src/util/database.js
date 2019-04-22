@@ -50,5 +50,5 @@ export async function getBattleTag(memberId) {
     return doc.battleTag
   }
 
-  return 'N/A'
+  return null
 }

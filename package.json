@@ -8,7 +8,7 @@
     "clean": "rm -rf dist && mkdir dist",
     "build": "npm run clean && babel src -d dist",
     "start": "node -r dotenv/config dist/index.js",
-    "test": "xo"
+    "lint": "xo"
   },
   "repository": "https://github.com/joshramsbottom/pugbot.git",
   "author": "joshramsbottom",

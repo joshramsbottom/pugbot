@@ -43,11 +43,23 @@ export default class PugQueue {
       return
     }
 
-    let mentions = ''
+    // Get battletags
+    const battleTagPromises = []
     for (const member of this.queue) {
-      const battleTag = await getBattleTag(member.id)
-      const rating = await getCompRating(battleTag)
+      battleTagPromises.push(getBattleTag(member.id))
+    }
+    const battleTags = await Promise.all(battleTagPromises)
 
+    // Get ratings
+    const ratingPromises = []
+    for (const battleTag of battleTags) {
+      ratingPromises.push(getCompRating(battleTag))
+    }
+    const ratings = await Promise.all(ratingPromises)
+
+    let mentions = ''
+    for (const [index, member] of this.queue.entries()) {
+      const rating = ratings[index]
       const roleEmoji = getRoleEmoji(member)
 
       mentions += `${member} (${rating}) ${roleEmoji}\n`
