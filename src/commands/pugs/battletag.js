@@ -30,9 +30,9 @@ export default class BattleTagCommand extends Command {
     //   return msg.say(`BattleTag ${battletag} is invalid!`)
     // }
 
-    const insertedCount = await insertBattleTag(msg.author.id, battletag)
     msg.delete()
 
+    const insertedCount = await insertBattleTag(msg.author.id, battletag)
     if (insertedCount) {
       return msg.say(`BattleTag ${battletag} linked to ${getFullName(msg.member)}`)
     }

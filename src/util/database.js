@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb'
 
-const { MONGODB_PASSWD } = process.env
+const { MONGODB_PASSWD, DB_NAME } = process.env
 
 const URI = `mongodb+srv://pugbot-user:${MONGODB_PASSWD}@pugbot-cluster-3gn5k.mongodb.net/test?retryWrites=true`
 
@@ -12,7 +12,7 @@ export async function insertBattleTag(memberId, battleTag) {
   const client = new MongoClient(URI)
   await client.connect()
 
-  const db = client.db('test')
+  const db = client.db(DB_NAME)
 
   const r = await db.collection('users').updateOne({
     _id: memberId
@@ -38,7 +38,7 @@ export async function getBattleTag(memberId) {
   const client = new MongoClient(URI)
   await client.connect()
 
-  const db = client.db('test')
+  const db = client.db(DB_NAME)
 
   const doc = await db.collection('users').findOne({
     _id: memberId
